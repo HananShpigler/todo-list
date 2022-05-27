@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "PERN Stack (PostgreSQL, Express.js, React.js, Node.js) to create a simple todo list application.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HananShpigler/todo-list.git"
+  },
+  "author": "Hanan Shpigler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HananShpigler/todo-list/issues"
+  },
+  "homepage": "https://github.com/HananShpigler/todo-list#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "pg": "^8.7.3"
+  }
+}
