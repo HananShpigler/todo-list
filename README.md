@@ -13,5 +13,5 @@
 ##### 5. In the backend terminal type ***`npm start`*** to start the server #####
 ##### 6. In the frontend terminal type ***`npm start`*** to start the app #####
 
-###### 📋 *Enjoy Detecting !!* 📋 ######
+###### 📋 *Enjoy managing your tasks !!* 📋 ######
 
