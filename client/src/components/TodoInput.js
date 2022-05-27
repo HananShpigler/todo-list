@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-const TodoInput = ({ props }) => {
+const TodoInput = () => {
   const [description, setDescription] = useState("");
 
   const onSubmitForm = async (e) => {
