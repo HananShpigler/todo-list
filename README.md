@@ -1,6 +1,7 @@
 # To-Do List
 
 ***A simple application for managing your tasks! you can add, update and delete tasks!.***
+
 <img src="./images/1.PNG" width=400>
 <img src="./images/2.PNG" width=400>
 
