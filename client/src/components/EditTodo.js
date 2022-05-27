@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-const EditTodo = ({ todo }) => {
+const EditTodo = ({ todo, setTodosChange }) => {
   const [description, setDescription] = useState(todo.description);
 
   const editText = async (id) => {
@@ -14,7 +14,7 @@ const EditTodo = ({ todo }) => {
       });
       if (res.status === 200 && description.length !== 0) {
         console.log("Success!");
-        window.location = "/";
+        setTodosChange(true);
       } else {
         console.log("Something went wrong, please try again!");
       }

@@ -1,12 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
+import AddTodo from "./AddTodo";
 import EditTodo from "./EditTodo";
 
 const TodosList = () => {
   const [todos, setTodos] = useState([]);
+  const [todosChange, setTodosChange] = useState(false);
 
   const getTodos = async () => {
     const res = await fetch("http://localhost:5000/todos");
-
     const todosArray = await res.json();
     setTodos(todosArray);
   };
@@ -20,6 +21,7 @@ const TodosList = () => {
       if (res.status !== 404) {
         setTodos(todos.filter((todo) => todo.todo_id !== id));
         console.log("Success!");
+        setTodosChange(true);
       } else {
         console.log("Error!");
       }
@@ -30,10 +32,13 @@ const TodosList = () => {
 
   useEffect(() => {
     getTodos();
-  }, []);
+    setTodosChange(false);
+    console.log("CHANGED !");
+  }, [todosChange]);
 
   return todos.length !== 0 ? (
     <Fragment>
+      <AddTodo setTodosChange={setTodosChange} />
       <table className="table mt-5">
         <thead>
           <tr>
@@ -47,7 +52,7 @@ const TodosList = () => {
             <tr key={todo.todo_id}>
               <td>{todo.description}</td>
               <td>
-                <EditTodo todo={todo} />
+                <EditTodo todo={todo} setTodosChange={setTodosChange} />
               </td>
               <td>
                 <button

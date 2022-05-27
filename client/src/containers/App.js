@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import "./App.css";
-import TodoInput from "../components/TodoInput";
 import TodosList from "../components/TodosList";
+import Header from "../components/Header";
 
 function App() {
   return (
     <Fragment>
       <div className="container">
-        <TodoInput />
+        <Header />
         <TodosList />
       </div>
     </Fragment>

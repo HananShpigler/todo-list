@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-const TodoInput = () => {
+const AddTodo = ({ setTodosChange }) => {
   const [description, setDescription] = useState("");
 
   const onSubmitForm = async (e) => {
@@ -15,6 +15,8 @@ const TodoInput = () => {
           body: JSON.stringify(desc),
         });
         console.log("response status: ", res.status);
+        setTodosChange(true);
+        setDescription("");
       } else {
         console.log("Description can`t be empty");
       }
@@ -22,9 +24,9 @@ const TodoInput = () => {
       console.error(error.message);
     }
   };
+
   return (
     <Fragment>
-      <h1 className="text-center my-5">📋 To-Do List 📋</h1>
       <form className="d-flex" onSubmit={onSubmitForm}>
         <input
           type="text"
@@ -39,4 +41,4 @@ const TodoInput = () => {
   );
 };
 
-export default TodoInput;
+export default AddTodo;
