@@ -1,25 +1,25 @@
 import React, { Fragment, useState } from "react";
+import { apiCallEdit } from "../api/api";
 
 const EditTodo = ({ todo, setTodosChange }) => {
   const [description, setDescription] = useState(todo.description);
 
   const editText = async (id) => {
-    try {
-      const desc = { description };
-
-      const res = await fetch(`http://localhost:5000/todos/${id}`, {
+    const desc = { description };
+    if (description) {
+      const headers = {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(desc),
-      });
-      if (res.status === 200 && description.length !== 0) {
-        console.log("Success!");
-        setTodosChange(true);
-      } else {
-        console.log("Something went wrong, please try again!");
-      }
-    } catch (error) {
-      console.error(error.message);
+      };
+      await apiCallEdit(`http://localhost:5000/todos/${id}`, headers)
+        .then((response) => {
+          setTodosChange(true);
+          console.log(response);
+        })
+        .catch((error) => console.error(error.message));
+    } else {
+      console.log("Description can`t be empty");
     }
   };
 
