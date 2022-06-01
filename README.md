@@ -4,6 +4,8 @@
 
 <img src="./images/1.PNG" width=400>
 <img src="./images/2.PNG" width=400>
+<img src="./images/3.PNG" width=400>
+<img src="./images/4.PNG" width=400>
 
 ## Instructions
 ##### 1. Clone ***( using `git clone` )*** or Download the folder ***( using ***`Download ZIP`*** option )*** #####
