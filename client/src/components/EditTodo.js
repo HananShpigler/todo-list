@@ -5,21 +5,25 @@ const EditTodo = ({ todo, setTodosChange }) => {
   const [description, setDescription] = useState(todo.description);
 
   const editText = async (id) => {
-    const desc = { description };
-    if (description) {
-      const headers = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(desc),
-      };
-      await apiCallEdit(`http://localhost:5000/todos/${id}`, headers)
-        .then((response) => {
-          setTodosChange(true);
-          console.log(response);
-        })
-        .catch((error) => console.error(error.message));
-    } else {
-      console.log("Description can`t be empty");
+    try {
+      const desc = { description };
+      if (description) {
+        const headers = {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(desc),
+        };
+        await apiCallEdit(`http://localhost:5000/todos/${id}`, headers)
+          .then((response) => {
+            setTodosChange(true);
+            console.log(response);
+          })
+          .catch((error) => console.error(error.message));
+      } else {
+        console.log("Description can`t be empty");
+      }
+    } catch (error) {
+      console.error("Error!");
     }
   };
 

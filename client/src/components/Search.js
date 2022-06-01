@@ -6,21 +6,25 @@ const Search = ({ setTodos }) => {
 
   const onSubmitSearch = async (e) => {
     e.preventDefault();
-    if (query) {
-      await apiCallSearch(`http://localhost:5000/search?query=${query}`)
-        .then((response) => {
-          if (typeof response !== "string") {
-            const todosArray = response;
-            setQuery("");
-            setTodos(todosArray);
-            console.log("OK");
-          } else {
-            console.log("No results!");
-          }
-        })
-        .catch((error) => console.error(error.message));
-    } else {
-      console.log("Search can`t be empty");
+    try {
+      if (query) {
+        await apiCallSearch(`http://localhost:5000/search?query=${query}`)
+          .then((response) => {
+            if (typeof response !== "string") {
+              const todosArray = response;
+              setQuery("");
+              setTodos(todosArray);
+              console.log("OK");
+            } else {
+              console.log("No results!");
+            }
+          })
+          .catch((error) => console.error(error.message));
+      } else {
+        console.log("Search can`t be empty");
+      }
+    } catch (error) {
+      console.error("Error!");
     }
   };
 

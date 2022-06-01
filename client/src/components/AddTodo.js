@@ -6,22 +6,26 @@ const AddTodo = ({ setTodosChange }) => {
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    const desc = { description };
-    if (description) {
-      const headers = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(desc),
-      };
-      await apiCallAdd("http://localhost:5000/todos", headers)
-        .then((response) => {
-          setTodosChange(true);
-          setDescription("");
-          console.log(response);
-        })
-        .catch((error) => console.error(error.message));
-    } else {
-      console.log("Description can`t be empty");
+    try {
+      const desc = { description };
+      if (description) {
+        const headers = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(desc),
+        };
+        await apiCallAdd("http://localhost:5000/todos", headers)
+          .then((response) => {
+            setTodosChange(true);
+            setDescription("");
+            console.log(response);
+          })
+          .catch((error) => console.error(error.message));
+      } else {
+        console.log("Description can`t be empty");
+      }
+    } catch (error) {
+      console.error("Error!");
     }
   };
 

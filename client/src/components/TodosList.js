@@ -9,34 +9,42 @@ const TodosList = () => {
   const [todosChange, setTodosChange] = useState(false);
 
   const getTodos = async () => {
-    await apiCallTodos("http://localhost:5000/todos")
-      .then((response) => {
-        if (typeof response !== "string") {
-          const todosArray = response;
-          setTodos(todosArray);
-          console.log("OK");
-        } else {
-          console.log("No results!");
-        }
-      })
-      .catch((error) => console.error(error.message));
+    try {
+      await apiCallTodos("http://localhost:5000/todos")
+        .then((response) => {
+          if (typeof response !== "string") {
+            const todosArray = response;
+            setTodos(todosArray);
+            console.log("OK");
+          } else {
+            console.log("No results!");
+          }
+        })
+        .catch((error) => console.error(error.message));
+    } catch (error) {
+      console.error("Error!");
+    }
   };
 
   const deleteTodo = async (id) => {
     const headers = {
       method: "DELETE",
     };
-    await apiCallDelete(`http://localhost:5000/todos/${id}`, headers)
-      .then((response) => {
-        if (response !== 404) {
-          setTodos(todos.filter((todo) => todo.todo_id !== id));
-          setTodosChange(true);
-          console.log("Success!");
-        } else {
-          console.log("Couldn`t Delete!");
-        }
-      })
-      .catch((error) => console.error(error.message));
+    try {
+      await apiCallDelete(`http://localhost:5000/todos/${id}`, headers)
+        .then((response) => {
+          if (response !== 404) {
+            setTodos(todos.filter((todo) => todo.todo_id !== id));
+            setTodosChange(true);
+            console.log("Success!");
+          } else {
+            console.log("Couldn`t Delete!");
+          }
+        })
+        .catch((error) => console.error(error.message));
+    } catch (error) {
+      console.error("Error!");
+    }
   };
 
   useEffect(() => {
